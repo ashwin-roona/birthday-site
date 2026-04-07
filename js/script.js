@@ -758,15 +758,12 @@ window.calculateAge = function () {
   if (!yr || yr < 1940 || yr > 2005) { shakeInput(); return; }
   const birth  = new Date(yr, 3, 7);
   const years  = BDAY.getFullYear() - birth.getFullYear();
-  const months = years * 12;
   const days   = Math.floor((BDAY - birth) / 864e5);
-  const hours  = days * 24;
-  const chai   = days * 5;
   animateCounter('age-years',  years);
-  animateCounter('stat-months', months, true);
-  animateCounter('stat-days',   days,   true);
-  animateCounter('stat-hours',  hours,  true);
-  animateCounter('stat-chai',   chai,   true);
+  document.getElementById('stat-months').textContent = '500+';
+  document.getElementById('stat-days').textContent   = '5';
+  document.getElementById('stat-hours').textContent  = '4';
+  document.getElementById('stat-chai').textContent   = '100+';
   const facts = [
     `That's ${(days * 24 * 60).toLocaleString()} minutes of pure awesomeness! 🌟`,
     `${years} years → ≈ ${(years * 240).toLocaleString()} meetings attended. Medal incoming! 🏅`,
