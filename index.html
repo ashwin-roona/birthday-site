@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Shanmugam! 🎂</title>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PRELOADER
+═══════════════════════════════════════════ -->
+<div id="preloader">
+
+  <!-- ── CLICK TO START OVERLAY ── -->
+  <div id="start-overlay">
+    <div class="start-inner">
+      <div class="cake start-cake">
+        <div class="candles">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+        </div>
+        <div class="cake-top"></div>
+        <div class="cake-mid"></div>
+        <div class="cake-bot"></div>
+        <div class="cake-plate"></div>
+      </div>
+      <h2 class="start-title">A Birthday Surprise<br>Is Waiting!</h2>
+      <p class="start-sub">🔊 Enable sound for the full experience</p>
+      <button id="start-btn">Start the Celebration!&nbsp;🎉</button>
+      <span class="start-hint">Click the button above to begin</span>
+    </div>
+  </div>
+
+  <!-- Three.js star background -->
+  <canvas id="three-canvas"></canvas>
+
+  <!-- Countdown UI -->
+  <div id="countdown-wrapper">
+    <svg class="countdown-ring-svg" viewBox="0 0 280 280">
+      <circle class="ring-bg" cx="140" cy="140" r="125"/>
+      <circle class="ring-progress" id="ring-progress" cx="140" cy="140" r="125"/>
+    </svg>
+    <div id="countdown-number">10</div>
+    <div id="countdown-label">Get Ready…</div>
+  </div>
+
+  <!-- Burst overlay (hidden until countdown ends) -->
+  <div id="burst-overlay">
+    <!-- 2-D firework canvas -->
+    <canvas id="firework-canvas"></canvas>
+    <!-- Floating labels -->
+    <div id="burst-labels-container"></div>
+    <!-- Big reveal card -->
+    <div id="big-reveal" class="hidden">
+      <p class="reveal-sub">🎊 It's Finally Here! 🎊</p>
+      <h1 class="reveal-name">Happy Birthday</h1>
+      <h2 class="reveal-surname">Shanmugam! <i class="fas fa-cake-candles"></i></h2>
+      <button id="enter-btn">Enter the Party &nbsp;🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     THEME TOGGLE
+═══════════════════════════════════════════ -->
+<button id="theme-toggle" title="Toggle Light / Dark">
+  <i class="fas fa-moon"></i>
+</button>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-brand">
+    <div class="mini-cake">
+      <div class="mini-candles">
+        <div class="mini-candle"><div class="mini-flame"></div></div>
+        <div class="mini-candle"><div class="mini-flame"></div></div>
+        <div class="mini-candle"><div class="mini-flame"></div></div>
+      </div>
+      <div class="mini-cake-top"></div>
+      <div class="mini-cake-mid"></div>
+      <div class="mini-cake-bot"></div>
+      <div class="mini-plate"></div>
+    </div>
+    Shanmugam's Day
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <!-- <li><a href="#habits">Fun Facts</a></li> -->
+    <li><a href="#age-calc">Age</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <!-- <li><a href="#quiz">Quiz</a></li> -->
+  </ul>
+  <span class="nav-emoji">🎉</span>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<main id="main-content">
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div id="hero-particles"></div>
+
+    <div class="hero-content" data-aos="zoom-in">
+      <div class="birthday-badge">🎊 It's The Big Day! 🎊</div>
+      <h1 class="hero-title">
+        Happy Birthday<br>
+        <span class="highlight-name">Shanmugam</span><br>
+        <span class="last-name">Palaniswamy!</span>
+      </h1>
+      <p class="hero-subtitle">
+        Another year older — another year of pretending you have everything under control! 😄<br>
+        Seriously though, you're absolutely amazing and we're beyond lucky to have you! 🌟
+      </p>
+      <div class="hero-emojis">
+        <span class="fe" style="--d:0s">🎂</span>
+        <span class="fe" style="--d:0.4s">🎁</span>
+        <span class="fe" style="--d:0.8s">🎉</span>
+        <span class="fe" style="--d:1.2s">🥳</span>
+        <span class="fe" style="--d:1.6s">🎊</span>
+        <span class="fe" style="--d:2s">⭐</span>
+      </div>
+      <a href="#habits" class="btn-primary">Let's Celebrate! 🎈</a>
+    </div>
+
+    <!-- CSS cake -->
+    <div class="hero-cake" data-aos="fade-left" data-aos-delay="300">
+      <div class="cake">
+        <div class="candles">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+        </div>
+        <div class="cake-top"></div>
+        <div class="cake-mid"></div>
+        <div class="cake-bot"></div>
+        <div class="cake-plate"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FUNNY MESSAGE ── -->
+  <section id="funny-message">
+    <div class="container">
+      <div class="message-card" data-aos="flip-left" data-aos-duration="900">
+        <div class="msg-icon">💌</div>
+        <h2>A Message for Shanmugam Palaniswamy</h2>
+        <p>
+          Dear Shanmugam, On behalf of <strong>Aanoor Groups</strong>, we wanted to take a moment to wish you a very happy birthday and thank you for being such a friendly and supportive manager. It’s not every day you come across someone who balances professionalism with approachability so effortlessly, and we truly appreciate the positive environment you create for the team.
+        </p>
+        <p>
+          Working with you has always felt comfortable and encouraging. You make it easy for us to share ideas, ask questions, and learn without hesitation. Your friendly nature and understanding approach make a big difference in our day-to-day work, and it genuinely motivates us to do better. Whether it’s guiding us through challenges or simply having a light moment during busy days, you always know how to keep the team connected and motivated.
+        </p>
+        <p>
+          We also really admire how you manage everything with such calmness and clarity. No matter how hectic things get, you always bring a sense of direction and confidence that helps us stay focused. At the same time, you never miss a chance to appreciate our efforts, which means a lot to us as a team.
+
+Today is all about celebrating you, and we hope you take some well-deserved time to relax and enjoy your special day with your loved ones. You deserve all the happiness, success, and appreciation for everything you do—not just as a manager, but as a great person to work with.
+
+Wishing you a fantastic year ahead filled with new achievements, good health, and many more moments of success. We’re really glad to be part of your team and look forward to continuing this journey together. Once again, Happy Birthday Shanmugam Palaniswamy! 🎂
+        </p>
+        <div class="msg-sig">
+          — With loads of laughter &amp; love,<br>
+          AAYI,Credible Corporate  &amp; Aanoor Global Team 💼
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY / 3D CAROUSEL ── -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">
+        <i class="fas fa-images sec-icon"></i> The Legendary Photo Archive
+      </h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="100">
+        Click arrows or swipe to explore &nbsp;•&nbsp; Hover the centre card to zoom in!
+      </p>
+    </div>
+
+    <!-- 3-D Fan Carousel — intentionally full-width (outside .container) -->
+    <div class="carousel-wrapper" id="carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
+      <div class="carousel-clip">
+        <div class="car-stage" id="car-stage"></div>
+      </div>
+      <button class="car-btn car-prev" id="car-prev" aria-label="Previous">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="car-btn car-next" id="car-next" aria-label="Next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="car-footer">
+        <div class="car-counter" id="car-counter">1 / 27</div>
+        <div class="car-dots" id="car-dots"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="gallery-note" data-aos="fade-up">
+        <i class="fas fa-info-circle"></i>
+        To add real photos: put images in <code>images/</code> and update the
+        <code>GALLERY_ITEMS</code> array in <code>js/script.js</code>
+        (change <code>realSrc</code> for each item).
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FUNNY HABITS (commented out — to be updated) ──
+  <section id="habits">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">
+        <i class="fas fa-user-secret sec-icon"></i> The Classified Files of Shanmugam <i class="fas fa-user-secret sec-icon"></i>
+      </h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="100">
+        Top-secret information that absolutely everyone already knows…
+      </p>
+      <div class="habits-grid">
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="0">
+          <div class="h-icon"><i class="fas fa-bed"></i></div>
+          <h3>The Meeting Magician</h3>
+          <p>Can fall into a peaceful micro-nap during a meeting and wake up at the exact right moment to say "That's a great point!" No one knows how. Scientists are investigating.</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="80">
+          <div class="h-icon"><i class="fas fa-layer-group"></i></div>
+          <h3>The Tab Collector</h3>
+          <p>Maintains 47+ browser tabs at all times. Closing even ONE causes visible distress. He insists they're "all open for a reason". We believe him. We fear him.</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="160">
+          <div class="h-icon"><i class="fas fa-mug-hot"></i></div>
+          <h3>The Chai Oracle</h3>
+          <p>His biological clock is perfectly synced to chai time. You don't schedule around deadlines — you schedule around his tea breaks. It's just efficient management.</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="240">
+          <div class="h-icon"><i class="fas fa-face-laugh-squint"></i></div>
+          <h3>The Self-Laugher</h3>
+          <p>Begins laughing at his own joke before he finishes telling it. By the punchline, only he knows what it was. The room laughs anyway — his laugh is contagious!</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="320">
+          <div class="h-icon"><i class="fas fa-keyboard"></i></div>
+          <h3>The 2-Finger Speedster</h3>
+          <p>Types with exactly two fingers yet somehow outruns people who use all ten. Guinness World Records has been notified. They're scared to visit the office.</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="400">
+          <div class="h-icon"><i class="fas fa-cookie-bite"></i></div>
+          <h3>The Snack Radar</h3>
+          <p>Has an uncanny sixth sense for snack arrivals. Can detect a biscuit packet being opened from three floors away. The pantry lives in fear and awe.</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="480">
+          <div class="h-icon"><i class="fas fa-clock"></i></div>
+          <h3>The "Quick" Meeting King</h3>
+          <p>"This will be a quick 5-minute catch-up." Two hours later, people are questioning their life choices. His record: 4 hours. He called it "productive".</p>
+        </div>
+
+        <div class="habit-card" data-aos="flip-left" data-aos-delay="560">
+          <div class="h-icon"><i class="fas fa-user-ninja"></i></div>
+          <h3>The Silent Problem Solver</h3>
+          <p>Vanishes mysteriously for 10 minutes, returns, and somehow everything is fixed. When asked how, he just smiles. Legend says he Googled it. Legends are often right.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  ── end habits ──>
+
+  <!-- ── AGE CALCULATOR ── -->
+  <section id="age-calc">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">
+        <i class="fas fa-calculator sec-icon"></i> The Age Revelation Machine
+      </h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="100">
+        ⚠️ Warning: numbers ahead may cause mild existential crisis
+      </p>
+      <div class="age-box" data-aos="zoom-in" data-aos-delay="200">
+        <div class="age-hero">
+          <div class="age-number-big" id="age-years">??</div>
+          <div class="age-unit">Years of Pure Legend 🎂</div>
+        </div>
+        <div class="age-stats">
+          <div class="asc"><div class="asn" id="stat-months">??</div><div class="asl">Months of Chaos</div><span>📅</span></div>
+          <div class="asc"><div class="asn" id="stat-days">??</div><div class="asl">Days of Glory</div><span>🌟</span></div>
+          <div class="asc"><div class="asn" id="stat-hours">??</div><div class="asl">Hours of Meetings</div><span>⏰</span></div>
+          <div class="asc"><div class="asn" id="stat-chai">??</div><div class="asl">Estimated Chai Cups</div><span>☕</span></div>
+        </div>
+        <div class="age-input-row">
+          <label>Enter Birth Year to Unlock Stats:</label>
+          <div class="input-group">
+            <input type="number" id="birth-year-input" placeholder="e.g. 1985" min="1950" max="2005" />
+            <button onclick="calculateAge()" class="calc-btn">Calculate! 🚀</button>
+          </div>
+        </div>
+        <div class="age-fun-fact" id="age-fun-fact"></div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ── QUIZ ── -->
+  <!-- <section id="quiz">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">
+        <i class="fas fa-brain sec-icon"></i> How Well Do You Know Shanmugam?
+      </h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="100">
+        A completely unbiased quiz with 100% scientifically accurate answers (according to us)
+      </p>
+      <div class="quiz-box" data-aos="zoom-in" data-aos-delay="200">
+        <div class="quiz-progress-bar-wrap">
+          <div class="quiz-progress-fill" id="quiz-bar"></div>
+        </div>
+        <div class="quiz-counter" id="quiz-counter">Question 1 of 5</div>
+        <div id="quiz-body"></div>
+        <div id="quiz-result" class="hidden">
+          <div class="result-icon" id="result-icon">🏆</div>
+          <h3 id="result-title">Amazing!</h3>
+          <p id="result-msg"></p>
+          <button onclick="resetQuiz()" class="btn-primary">Play Again! 🔄</button>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ── FOOTER ── -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <h2>🎉 Happy Birthday, Shanmugam! 🎉</h2>
+      <p class="footer-wish">
+        Wishing you a day as spectacular as you are — and a year filled with laughter,
+        success, and an internet connection that never lags! 🚀
+      </p>
+      <div class="footer-from">
+        <p>With buckets of love &amp; laughter from:</p>
+        <div class="company-badges">
+          <div class="cbadge"><img src="./images/AAYI LOGO png yellow.png" alt=""> AAYI Private Limited</div>
+          <div class="and-text">&amp;</div>
+          <div class="cbadge"><img src="./images/CS LOGO FAVICON.png" alt=""> Credible Corporate Service Private Limited</div>
+          <div class="and-text">&amp;</div>
+          <div class="cbadge"><img src="./images/CIRCLE LOGO PNG.png" alt=""> Aanoor Global Corporate Solution Private Limited</div>
+        </div>
+        <p class="footer-team">— The Entire Team 👥❤️</p>
+      </div>
+      <div class="footer-bottom">
+        Made with ❤️ and 😂 for Shanmugam's Special Day &nbsp;•&nbsp; April 7, 2026
+      </div>
+    </div>
+    <!-- Confetti dots -->
+    <div class="footer-confetti" id="footer-confetti"></div>
+  </footer>
+
+</main><!-- /#main-content -->
+
+<!-- ═══ SCRIPTS ═══ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
